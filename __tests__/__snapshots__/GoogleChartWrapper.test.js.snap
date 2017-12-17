@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChartWrapper doesn't throw 1`] = `
+<div
+  id="vis_div"
+/>
+`;
+
+exports[`ChartWrapper doesn't throw 2`] = `
+Object {
+  "calls": Array [
+    Array [
+      Object {
+        "chartType": "ColumnChart",
+        "containerId": "vis_div",
+        "dataTable": Array [
+          Array [
+            "",
+            Object {
+              "label": "Germany",
+            },
+            "Brazil",
+          ],
+          Array [
+            "",
+            300,
+            400,
+          ],
+        ],
+        "options": Object {},
+      },
+    ],
+  ],
+  "instances": Array [
+    mockConstructor {},
+  ],
+}
+`;
+
+exports[`ChartWrapper exports 1`] = `[Function]`;
+
+exports[`ChartWrapper mounts 1`] = `
+Object {
+  "chartType": "ColumnChart",
+  "dataTable": Array [
+    Array [
+      "",
+      Object {
+        "label": "Germany",
+      },
+      "Brazil",
+    ],
+    Array [
+      "",
+      300,
+      400,
+    ],
+  ],
+}
+`;
