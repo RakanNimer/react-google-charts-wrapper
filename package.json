@@ -8,13 +8,23 @@
     "build": "babel src/ -d build/ && microbundle build/lib/index.js ",
     "lint": "standard --verbose src/lib/*.js | snazzy",
     "precommit": "lint-staged",
-    "test": "jest"
+    "test": "npm run lint && jest --coverage"
   },
   "lint-staged": {
     "src/lib/*.{js,json,css}": [
       "prettier --write && npm run lint --fix",
       "git add"
     ]
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 60,
+        "functions": 60,
+        "lines": 80,
+        "statements": 80
+      }
+    }
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

@@ -1,10 +1,6 @@
 import { Component, createElement } from 'react'
 import script from 'loadjs'
 const e = createElement
-// const script =
-//   typeof window !== 'undefined'
-//     ? require('loadjs')
-//     : (link, { success: callback }) => callback()
 
 export const loadRemoteScript = async () => {
   return new Promise((resolve, reject) =>

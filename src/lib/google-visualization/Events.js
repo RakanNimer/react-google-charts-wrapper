@@ -11,9 +11,7 @@ class VizEvents extends Component {
     this.bindVizEvents(this.props)
   }
   componentWillUnmount () {
-    const { chartWrapper } = this.props
-    console.log({ chartWrapperMount: chartWrapper })
-    window.google.visualization.events.removeAllListeners(chartWrapper)
+    this.unbindVizEvents(this.props)
   }
   render () {
     const { render } = this.props
@@ -22,6 +20,7 @@ class VizEvents extends Component {
   unbindVizEvents (props) {
     const { chartWrapper } = props
     if (chartWrapper === null) return
+    if (!window.google) return
     window.google.visualization.events.removeAllListeners(chartWrapper)
   }
   bindVizEvents (props) {

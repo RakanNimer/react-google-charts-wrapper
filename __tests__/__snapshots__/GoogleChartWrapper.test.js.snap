@@ -37,9 +37,11 @@ Object {
 }
 `;
 
+exports[`ChartWrapper events and Loader 1`] = `"<div>Loading Chart.</div>"`;
+
 exports[`ChartWrapper exports 1`] = `[Function]`;
 
-exports[`ChartWrapper mounts 1`] = `
+exports[`ChartWrapper lifecycle with events 1`] = `
 Object {
   "chartType": "ColumnChart",
   "dataTable": Array [
@@ -57,4 +59,148 @@ Object {
     ],
   ],
 }
+`;
+
+exports[`ChartWrapper lifecycle with events 2`] = `
+Object {
+  "chartType": "ColumnChart",
+  "dataTable": Array [
+    Array [
+      "",
+      Object {
+        "label": "Germany2",
+      },
+      "Brazil2",
+    ],
+    Array [
+      "",
+      100,
+      200,
+    ],
+  ],
+}
+`;
+
+exports[`ChartWrapper lifecycle with events 3`] = `
+Array [
+  Array [
+    Object {
+      "draw": [Function],
+      "setChartType": [Function],
+      "setContainerId": [Function],
+      "setDataTable": [Function],
+      "setOptions": [Function],
+    },
+    "ready",
+    [Function],
+  ],
+  Array [
+    Object {
+      "draw": [Function],
+      "setChartType": [Function],
+      "setContainerId": [Function],
+      "setDataTable": [Function],
+      "setOptions": [Function],
+    },
+    "error",
+    [Function],
+  ],
+  Array [
+    Object {
+      "draw": [Function],
+      "setChartType": [Function],
+      "setContainerId": [Function],
+      "setDataTable": [Function],
+      "setOptions": [Function],
+    },
+    "select",
+    [Function],
+  ],
+]
+`;
+
+exports[`ChartWrapper lifecycle with events 4`] = `
+Array [
+  Array [
+    Object {
+      "draw": [Function],
+      "setChartType": [Function],
+      "setContainerId": [Function],
+      "setDataTable": [Function],
+      "setOptions": [Function],
+    },
+  ],
+  Array [
+    Object {
+      "draw": [Function],
+      "setChartType": [Function],
+      "setContainerId": [Function],
+      "setDataTable": [Function],
+      "setOptions": [Function],
+    },
+  ],
+]
+`;
+
+exports[`ChartWrapper lifecycle without events 1`] = `"<div id=\\"vis_div\\"></div>"`;
+
+exports[`ChartWrapper lifecycle without events 2`] = `
+Array [
+  Array [
+    Object {
+      "draw": [Function],
+      "setChartType": [Function],
+      "setContainerId": [Function],
+      "setDataTable": [Function],
+      "setOptions": [Function],
+    },
+    "ready",
+    [Function],
+  ],
+  Array [
+    Object {
+      "draw": [Function],
+      "setChartType": [Function],
+      "setContainerId": [Function],
+      "setDataTable": [Function],
+      "setOptions": [Function],
+    },
+    "error",
+    [Function],
+  ],
+  Array [
+    Object {
+      "draw": [Function],
+      "setChartType": [Function],
+      "setContainerId": [Function],
+      "setDataTable": [Function],
+      "setOptions": [Function],
+    },
+    "select",
+    [Function],
+  ],
+]
+`;
+
+exports[`ChartWrapper lifecycle without events 3`] = `
+Array [
+  Array [
+    Object {
+      "draw": [Function],
+      "setChartType": [Function],
+      "setContainerId": [Function],
+      "setDataTable": [Function],
+      "setOptions": [Function],
+    },
+  ],
+  Array [
+    Object {
+      "draw": [Function],
+      "setChartType": [Function],
+      "setContainerId": [Function],
+      "setDataTable": [Function],
+      "setOptions": [Function],
+    },
+  ],
+]
 `;

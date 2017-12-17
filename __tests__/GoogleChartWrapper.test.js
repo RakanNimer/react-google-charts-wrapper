@@ -3,7 +3,17 @@ global.requestAnimationFrame = callback => {
 }
 global.window.google = {
   visualization: {
-    ChartWrapper: jest.fn(() => ({ draw: jest.fn() }))
+    ChartWrapper: jest.fn(() => ({
+      draw: jest.fn(),
+      setDataTable: jest.fn(),
+      setChartType: jest.fn(),
+      setContainerId: jest.fn(),
+      setOptions: jest.fn()
+    })),
+    events: {
+      removeAllListeners: jest.fn(),
+      addListener: jest.fn()
+    }
   }
 }
 const React = require('react')
@@ -14,7 +24,7 @@ const { default: Events } = require('../src/lib/google-visualization/Events')
 
 const { GoogleChartLoader } = require('../src/lib/GoogleChartLoader')
 
-const ChartWrapper = props => {
+const ChartWrapperWithEvents = props => {
   return (
     <GoogleChartWrapper
       {...props}
@@ -39,14 +49,14 @@ const { mount } = Enzyme
 Enzyme.configure({ adapter: new Adapter() })
 
 const dataTable = [['', { label: 'Germany' }, 'Brazil'], ['', 300, 400]]
-
+const dataTable2 = [['', { label: 'Germany2' }, 'Brazil2'], ['', 100, 200]]
 describe('ChartWrapper', () => {
   test('exports', () => {
-    expect(ChartWrapper).toMatchSnapshot()
+    expect(ChartWrapperWithEvents).toMatchSnapshot()
   })
   test(`doesn't throw`, () => {
     const Chart = () =>
-      createElement(ChartWrapper, {
+      createElement(ChartWrapperWithEvents, {
         chartType: 'ColumnChart',
         dataTable
       })
@@ -57,10 +67,42 @@ describe('ChartWrapper', () => {
       global.window.google.visualization.ChartWrapper.mock
     ).toMatchSnapshot()
   })
-  test('mounts', () => {
-    const Chart = () =>
-      createElement(ChartWrapper, { chartType: 'ColumnChart', dataTable })
-    const RenderedChart = mount(Chart())
+  test('lifecycle with events', () => {
+    const RenderedChart = mount(
+      <ChartWrapperWithEvents chartType={'ColumnChart'} dataTable={dataTable} />
+    )
     expect(RenderedChart.props()).toMatchSnapshot()
+    RenderedChart.setProps({ dataTable: dataTable2 })
+    expect(RenderedChart.props()).toMatchSnapshot()
+    expect(
+      global.window.google.visualization.events.addListener.mock.calls
+    ).toMatchSnapshot()
+    RenderedChart.unmount()
+    expect(
+      global.window.google.visualization.events.removeAllListeners.mock.calls
+    ).toMatchSnapshot()
+  })
+  test('lifecycle without events', () => {
+    const RenderedChart = mount(
+      <GoogleChartWrapper chartType={'ScatterChart'} dataTable={dataTable} />
+    )
+    RenderedChart.setProps({ dataTable: dataTable2 })
+    expect(RenderedChart.html()).toMatchSnapshot()
+    expect(
+      global.window.google.visualization.events.addListener.mock.calls
+    ).toMatchSnapshot()
+    RenderedChart.unmount()
+    expect(
+      global.window.google.visualization.events.removeAllListeners.mock.calls
+    ).toMatchSnapshot()
+  })
+
+  test('events and Loader', () => {
+    const RenderedChart = mount(
+      <GoogleChartLoader window={window}>
+        <GoogleChartWrapper chartType={'ScatterChart'} dataTable={dataTable} />
+      </GoogleChartLoader>
+    )
+    expect(RenderedChart.html()).toMatchSnapshot()
   })
 })

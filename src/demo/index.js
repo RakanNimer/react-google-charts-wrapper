@@ -2,7 +2,6 @@ import React, { createElement, Component } from 'react'
 import ReactDOM from 'react-dom'
 
 import GoogleChartLoader from '../lib/GoogleChartLoader'
-import GoogleChart from '../lib/GoogleChart'
 import ChartWrapper from '../lib/google-visualization/ChartWrapper'
 import Events from '../lib/google-visualization/Events'
 
